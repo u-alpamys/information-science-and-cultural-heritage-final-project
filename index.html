@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pulp Fiction — Knowledge Organization Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --gray-50: #fafafa;
+      --gray-100: #f5f5f5;
+      --gray-200: #ebebeb;
+      --gray-300: #d6d6d6;
+      --gray-500: #8c8c8c;
+      --gray-700: #4a4a4a;
+      --gray-900: #1a1a1a;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: var(--gray-900);
+      background: #fff;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    h2 {
+      font-size: 1.55rem;
+      margin-bottom: 0.4rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      color: var(--gray-700);
+      max-width: 68ch;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+    section.bg-light-gray {
+      background: var(--gray-100);
+    }
+
+    #hero {
+      padding: 7rem 0 5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    #hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.1rem;
+    }
+    #hero .subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      max-width: 55ch;
+    }
+    #hero .meta {
+      margin-top: 2.5rem;
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      border-top: 1px solid var(--gray-200);
+      padding-top: 1.25rem;
+    }
+
+    .rule {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      margin: 0;
+    }
+
+    .entity-table {
+      font-size: 0.88rem;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .entity-table thead th {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      padding: 0.55rem 1rem 0.55rem 0;
+      border-bottom: 1px solid var(--gray-300);
+      background: transparent;
+    }
+    .entity-table tbody td {
+      padding: 0.6rem 1rem 0.6rem 0;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--gray-700);
+      vertical-align: top;
+    }
+    .entity-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .entity-table a {
+      color: var(--gray-900);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-300);
+    }
+    .entity-table a:hover {
+      border-bottom-color: var(--gray-900);
+    }
+    .badge-type {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--gray-200);
+      color: var(--gray-700);
+      padding: 0.18rem 0.55rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .diagram-wrap {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .diagram-wrap img {
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-caption {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      margin-top: 0.9rem;
+    }
+
+    .repr-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      padding: 1.75rem;
+      height: 100%;
+      background: #fff;
+    }
+    .repr-card .card-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .repr-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .repr-card p {
+      font-size: 0.88rem;
+      margin-bottom: 1.2rem;
+      color: var(--gray-700);
+    }
+    .repr-card .card-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--gray-900);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-300);
+      padding-bottom: 1px;
+    }
+    .repr-card .card-link:hover {
+      border-bottom-color: var(--gray-900);
+    }
+
+    .graph-wrap {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .graph-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    .file-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .file-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.88rem;
+    }
+    .file-list li:first-child {
+      border-top: 1px solid var(--gray-200);
+    }
+    .file-list .file-name {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.82rem;
+      color: var(--gray-900);
+    }
+    .file-list .file-desc {
+      color: var(--gray-500);
+      flex: 1;
+    }
+    .file-list a {
+      color: var(--gray-900);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-300);
+    }
+    .file-list a:hover {
+      border-bottom-color: var(--gray-900);
+    }
+
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--gray-200);
+      font-size: 0.82rem;
+      color: var(--gray-500);
+    }
+  </style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <h1>Pulp Fiction</h1>
+        <p class="subtitle">
+          A knowledge organization project documenting the full pipeline
+          from a Wikipedia source to structured linked data.
+        </p>
+        <div class="meta">
+          Alpamys Ualbekov &nbsp;·&nbsp; Information Science and Cultural Heritage
+          &nbsp;·&nbsp; DHDK 2025–26
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 mb-4 mb-lg-0">
+        <span class="section-label">About</span>
+      </div>
+      <div class="col-lg-8">
+        <p>
+          The project takes the English Wikipedia article on <em>Pulp Fiction</em> (1994)
+          as its primary source. The objective was to extract structured knowledge
+          from that text: identify and classify named entities, produce formal models
+          of their relations, encode the article in XML/TEI, and derive a machine-readable
+          RDF dataset from the encoding.
+        </p>
+        <p class="mt-3">
+          The choice of subject was not purely methodological. <em>Pulp Fiction</em> is
+          one of my favourite films — I first watched it as a teenager. It also happens
+          to be a suitable subject for this kind of work: the article is rich in
+          interconnected entities — persons, places, organizations, events, and
+          bibliographic resources — whose relations can be expressed precisely using
+          existing ontology vocabularies.
+        </p>
+        <p class="mt-3">
+          The work is organized into three successive stages: domain study and entity
+          identification, knowledge modeling and ontology mapping, and knowledge
+          representation in standard formats. The outputs of each stage are documented
+          and made available on this site.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section id="domain-study" class="bg-light-gray">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-3 mb-4 mb-lg-0">
+        <span class="section-label">Domain Study</span>
+      </div>
+      <div class="col-lg-8">
+        <h2>Entities</h2>
+        <p class="mt-2">
+          I identified nineteen named entities in the Wikipedia article across
+          six categories: persons, places, organizations, events, concepts, and
+          bibliographic resources. Each one was reconciled to at least one
+          external authority file — Wikidata, VIAF, or LCSH — providing stable,
+          resolvable identifiers for subsequent modeling and encoding.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <table class="entity-table">
+          <thead>
+            <tr>
+              <th>Entity</th>
+              <th>Type</th>
+              <th>Role / note</th>
+              <th>Authority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Quentin Tarantino</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Director, screenwriter</td>
+              <td><a href="http://viaf.org/viaf/37054403" target="_blank">VIAF 37054403</a></td>
+            </tr>
+            <tr>
+              <td>Roger Avary</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Co-writer of story</td>
+              <td><a href="http://viaf.org/viaf/85099020" target="_blank">VIAF 85099020</a></td>
+            </tr>
+            <tr>
+              <td>John Travolta</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Actor (Vincent Vega)</td>
+              <td><a href="http://viaf.org/viaf/117713609" target="_blank">VIAF 117713609</a></td>
+            </tr>
+            <tr>
+              <td>Uma Thurman</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Actor (Mia Wallace)</td>
+              <td><a href="http://viaf.org/viaf/14970417" target="_blank">VIAF 14970417</a></td>
+            </tr>
+            <tr>
+              <td>Samuel L. Jackson</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Actor (Jules Winnfield)</td>
+              <td><a href="http://viaf.org/viaf/84357496" target="_blank">VIAF 84357496</a></td>
+            </tr>
+            <tr>
+              <td>Bruce Willis</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Actor (Butch Coolidge)</td>
+              <td><a href="http://viaf.org/viaf/85362156" target="_blank">VIAF 85362156</a></td>
+            </tr>
+            <tr>
+              <td>Lawrence Bender</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Producer</td>
+              <td><a href="http://viaf.org/viaf/1066569" target="_blank">VIAF 1066569</a></td>
+            </tr>
+            <tr>
+              <td>Sally Menke</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Film editor</td>
+              <td><a href="http://viaf.org/viaf/249149066546665601337" target="_blank">VIAF</a></td>
+            </tr>
+            <tr>
+              <td>Andrzej Sekuła</td>
+              <td><span class="badge-type">Person</span></td>
+              <td>Cinematographer</td>
+              <td><a href="http://viaf.org/viaf/69138003" target="_blank">VIAF 69138003</a></td>
+            </tr>
+            <tr>
+              <td>Los Angeles</td>
+              <td><span class="badge-type">Place</span></td>
+              <td>Setting of the film</td>
+              <td><a href="https://www.wikidata.org/wiki/Q65" target="_blank">Wikidata Q65</a></td>
+            </tr>
+            <tr>
+              <td>Cannes</td>
+              <td><span class="badge-type">Place</span></td>
+              <td>Where the film premiered</td>
+              <td><a href="https://www.wikidata.org/wiki/Q39984" target="_blank">Wikidata Q39984</a></td>
+            </tr>
+            <tr>
+              <td>Miramax Films</td>
+              <td><span class="badge-type">Organization</span></td>
+              <td>Distributor / financier</td>
+              <td><a href="http://viaf.org/viaf/131570070" target="_blank">VIAF 131570070</a></td>
+            </tr>
+            <tr>
+              <td>A Band Apart</td>
+              <td><span class="badge-type">Organization</span></td>
+              <td>Production company (Tarantino's)</td>
+              <td><a href="https://www.wikidata.org/wiki/Q300323" target="_blank">Wikidata Q300323</a></td>
+            </tr>
+            <tr>
+              <td>Jersey Films</td>
+              <td><span class="badge-type">Organization</span></td>
+              <td>Production company</td>
+              <td><a href="http://viaf.org/viaf/153908908" target="_blank">VIAF 153908908</a></td>
+            </tr>
+            <tr>
+              <td>Library of Congress</td>
+              <td><span class="badge-type">Organization</span></td>
+              <td>Selected film for National Film Registry</td>
+              <td><a href="http://viaf.org/viaf/151962300" target="_blank">VIAF 151962300</a></td>
+            </tr>
+            <tr>
+              <td>1994 Cannes Film Festival</td>
+              <td><span class="badge-type">Event</span></td>
+              <td>Won Palme d'Or</td>
+              <td><a href="https://www.wikidata.org/wiki/Q645890" target="_blank">Wikidata Q645890</a></td>
+            </tr>
+            <tr>
+              <td>67th Academy Awards</td>
+              <td><span class="badge-type">Event</span></td>
+              <td>7 nominations, 1 win</td>
+              <td><a href="https://www.wikidata.org/wiki/Q208768" target="_blank">Wikidata Q208768</a></td>
+            </tr>
+            <tr>
+              <td>Vietnam War</td>
+              <td><span class="badge-type">Event</span></td>
+              <td>Referenced in the backstory</td>
+              <td><a href="https://www.wikidata.org/wiki/Q8740" target="_blank">Wikidata Q8740</a></td>
+            </tr>
+            <tr>
+              <td>Pulp Fiction Soundtrack</td>
+              <td><span class="badge-type">Bibliographic</span></td>
+              <td>Music album released alongside the film</td>
+              <td><a href="https://www.wikidata.org/wiki/Q1607955" target="_blank">Wikidata Q1607955</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section id="knowledge-organisation">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-3 mb-4 mb-lg-0">
+        <span class="section-label">Knowledge Organisation</span>
+      </div>
+      <div class="col-lg-8">
+        <h2>Modeling the domain</h2>
+        <p class="mt-2">
+          The identified entities and their relations were formalized through two
+          successive models. The theoretical model establishes the conceptual structure
+          in natural language; the conceptual model maps that structure to standard
+          ontology vocabularies.
+        </p>
+      </div>
+    </div>
+
+        <div class="row mb-5">
+      <div class="col-lg-3 mb-3 mb-lg-0">
+        <h3>Theoretical model</h3>
+        <p style="font-size: 0.88rem;">
+          A mind map representing the relations between all identified entities and
+          the film, expressed in natural language. Each node is annotated with its
+          corresponding authority identifier (VIAF or Wikidata).
+        </p>
+      </div>
+      <div class="col-lg-9">
+        <div class="diagram-wrap">
+          <img src="theoretical_model.png" alt="Theoretical model mind map" />
+          <p class="diagram-caption">
+            Theoretical model — entities and relations with VIAF / Wikidata identifiers
+          </p>
+        </div>
+      </div>
+    </div>
+
+        <div class="row">
+      <div class="col-lg-3 mb-3 mb-lg-0">
+        <h3>Conceptual model</h3>
+        <p style="font-size: 0.88rem;">
+          The relations established in the theoretical model are formalized using
+          existing ontology vocabularies — Schema.org, Dublin Core Terms, and SKOS.
+          The diagram follows the Graffoo notation for ontology representation.
+        </p>
+      </div>
+      <div class="col-lg-9">
+        <div class="diagram-wrap">
+          <img src="conceptual_model.png" alt="Conceptual model Graffoo diagram" />
+          <p class="diagram-caption">
+            Conceptual model — ontology mappings using Schema.org, DCTerms, and SKOS
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section id="knowledge-representation" class="bg-light-gray">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-3 mb-4 mb-lg-0">
+        <span class="section-label">Knowledge Representation</span>
+      </div>
+      <div class="col-lg-8">
+        <h2>From models to data</h2>
+        <p class="mt-2">
+          The conceptual model was used as the basis for three concrete knowledge
+          representations: an XML/TEI encoding of the article text, an HTML rendering
+          derived from it, and an RDF dataset expressing all entities and relations
+          as linked data.
+        </p>
+      </div>
+    </div>
+
+        <div class="row g-3 mb-5">
+            <div class="col-md-6">
+        <div class="repr-card">
+          <span class="card-tag">Encoding</span>
+          <h3>XML / TEI Document</h3>
+          <p>
+            The Wikipedia article encoded according to the Text Encoding Initiative
+            standard. Named entities are marked up inline using
+            <code style="font-size:0.8rem; color:var(--gray-700);">&lt;persName&gt;</code>,
+            <code style="font-size:0.8rem; color:var(--gray-700);">&lt;placeName&gt;</code>,
+            <code style="font-size:0.8rem; color:var(--gray-700);">&lt;orgName&gt;</code>,
+            and related TEI elements. The TEI header declares all entities with their
+            authority identifiers.
+          </p>
+          <a class="card-link" href="pulp_fiction.xml" target="_blank">View TEI document →</a>
+        </div>
+      </div>
+
+            <div class="col-md-6">
+        <div class="repr-card">
+          <span class="card-tag">Transformation</span>
+          <h3>HTML Output</h3>
+          <p>
+            An XSLT stylesheet transforms the TEI document into a readable HTML
+            rendering. Each entity type is highlighted in a distinct color,
+            making the annotation layer directly visible in the text.
+          </p>
+          <a class="card-link" href="pulp_fiction.html" target="_blank">View HTML rendering →</a>
+        </div>
+      </div>
+
+            <div class="col-md-6">
+        <div class="repr-card">
+          <span class="card-tag">Linked Data</span>
+          <h3>RDF Dataset</h3>
+          <p>
+            A Python script parses the TEI header and generates RDF triples for
+            every entity and relation declared in the document. The dataset is
+            serialized as Turtle using Schema.org and Dublin Core Terms as
+            primary vocabularies; all entity URIs resolve to Wikidata or VIAF.
+          </p>
+          <a class="card-link" href="pulp_fiction.ttl" download>Download Turtle file →</a>
+        </div>
+      </div>
+
+            <div class="col-md-6">
+        <div class="repr-card">
+          <span class="card-tag">Visualization</span>
+          <h3>Knowledge Graph</h3>
+          <p>
+            The RDF dataset rendered as a network graph using rdflib, networkx,
+            and matplotlib. Nodes represent entities; edges represent predicates.
+            The visualization provides a structural overview of the dataset.
+          </p>
+          <a class="card-link" href="knowledge_graph.png" target="_blank">View full image →</a>
+        </div>
+      </div>
+    </div>
+
+        <div class="row">
+      <div class="col-12">
+        <div class="graph-wrap">
+          <img src="knowledge_graph.png" alt="Knowledge graph visualization" />
+        </div>
+        <p style="font-size: 0.78rem; color: var(--gray-500); margin-top: 0.75rem;">
+          Knowledge graph — RDF entities and relations rendered from pulp_fiction.ttl
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section id="downloads">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-lg-3 mb-4 mb-lg-0">
+        <span class="section-label">Downloads</span>
+      </div>
+      <div class="col-lg-8">
+        <h2>All files</h2>
+        <p class="mt-2">All source files and output artifacts produced in the course of the project.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-9 offset-lg-3">
+        <ul class="file-list">
+          <li>
+            <a class="file-name" href="pulp_fiction.xml" target="_blank">pulp_fiction.xml</a>
+            <span class="file-desc">TEI/XML — annotated Wikipedia article</span>
+          </li>
+          <li>
+            <a class="file-name" href="style.xslt" target="_blank">style.xslt</a>
+            <span class="file-desc">XSLT stylesheet — TEI to HTML transformation</span>
+          </li>
+          <li>
+            <a class="file-name" href="xml2html.py" target="_blank">xml2html.py</a>
+            <span class="file-desc">Python script — runs the XSLT transformation</span>
+          </li>
+          <li>
+            <a class="file-name" href="pulp_fiction.html" target="_blank">pulp_fiction.html</a>
+            <span class="file-desc">HTML — rendered annotated article</span>
+          </li>
+          <li>
+            <a class="file-name" href="tei2rdf.py" target="_blank">tei2rdf.py</a>
+            <span class="file-desc">Python script — TEI to RDF/Turtle conversion</span>
+          </li>
+          <li>
+            <a class="file-name" href="pulp_fiction.ttl" download>pulp_fiction.ttl</a>
+            <span class="file-desc">RDF dataset — Turtle serialization</span>
+          </li>
+          <li>
+            <a class="file-name" href="graph_visualizer.py" target="_blank">graph_visualizer.py</a>
+            <span class="file-desc">Python script — knowledge graph visualization</span>
+          </li>
+          <li>
+            <a class="file-name" href="knowledge_graph.png" target="_blank">knowledge_graph.png</a>
+            <span class="file-desc">Knowledge graph — network visualization</span>
+          </li>
+          <li>
+            <a class="file-name" href="theoretical_model.png" target="_blank">theoretical_model.png</a>
+            <span class="file-desc">Theoretical model — mind map with authority links</span>
+          </li>
+          <li>
+            <a class="file-name" href="conceptual_model.png" target="_blank">conceptual_model.png</a>
+            <span class="file-desc">Conceptual model — Graffoo ontology diagram</span>
+          </li>
+          <li>
+            <a class="file-name" href="theoretical_model.graphml" download>theoretical_model.graphml</a>
+            <span class="file-desc">Theoretical model source — yEd GraphML</span>
+          </li>
+          <li>
+            <a class="file-name" href="conceptual_model.graphml" download>conceptual_model.graphml</a>
+            <span class="file-desc">Conceptual model source — GraphML</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 offset-lg-3">
+        <span>Alpamys Ualbekov</span>
+        <span style="margin: 0 0.6rem; color: var(--gray-300);">·</span>
+        <span>Information Science and Cultural Heritage — DHDK</span>
+        <span style="margin: 0 0.6rem; color: var(--gray-300);">·</span>
+        <span>2026</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

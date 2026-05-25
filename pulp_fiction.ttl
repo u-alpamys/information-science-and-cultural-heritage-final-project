@@ -1,0 +1,87 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://www.wikidata.org/wiki/Q104123> a schema:Movie ;
+    dcterms:contributor <https://viaf.org/viaf/69138003> ;
+    dcterms:references <https://www.wikidata.org/wiki/Q8740> ;
+    dcterms:source <https://www.wikidata.org/wiki/Q865585> ;
+    schema:actor <https://viaf.org/viaf/117713609>,
+        <https://viaf.org/viaf/14970417>,
+        <https://viaf.org/viaf/84357496>,
+        <https://viaf.org/viaf/85362156> ;
+    schema:award <https://www.wikidata.org/wiki/Q961852> ;
+    schema:contentLocation <https://www.wikidata.org/wiki/Q65> ;
+    schema:contributor <https://viaf.org/viaf/85099020> ;
+    schema:director <https://viaf.org/viaf/37054403> ;
+    schema:editor <https://viaf.org/viaf/249149066546665601337> ;
+    schema:genre <https://www.wikidata.org/wiki/Q2894685>,
+        <https://www.wikidata.org/wiki/Q459290>,
+        <https://www.wikidata.org/wiki/Q53094>,
+        <https://www.wikidata.org/wiki/Q7234396> ;
+    schema:isRelatedTo <https://www.wikidata.org/wiki/Q1607955> ;
+    schema:locationCreated <https://www.wikidata.org/wiki/Q39984> ;
+    schema:producer <https://viaf.org/viaf/1066569>,
+        <https://viaf.org/viaf/153908908>,
+        <https://www.wikidata.org/wiki/Q300323> ;
+    schema:publisher <https://viaf.org/viaf/131570070> ;
+    schema:sponsor <https://viaf.org/viaf/151962300> .
+
+<https://www.wikidata.org/wiki/Q857001> a schema:Event ;
+    schema:award <https://viaf.org/viaf/117713609>,
+        <https://viaf.org/viaf/14970417>,
+        <https://viaf.org/viaf/84357496> ;
+    schema:contentLocation <https://www.wikidata.org/wiki/Q65> .
+
+<https://viaf.org/viaf/1066569> a schema:Person .
+
+<https://viaf.org/viaf/151962300> a schema:Organization .
+
+<https://viaf.org/viaf/153908908> a schema:Organization .
+
+<https://viaf.org/viaf/249149066546665601337> a schema:Person .
+
+<https://viaf.org/viaf/37054403> a schema:Person ;
+    schema:contributor <https://viaf.org/viaf/85099020> ;
+    schema:founder <https://www.wikidata.org/wiki/Q300323> .
+
+<https://viaf.org/viaf/69138003> a schema:Person .
+
+<https://www.wikidata.org/wiki/Q1607955> a schema:MusicAlbum ;
+    schema:publisher <https://viaf.org/viaf/131570070> .
+
+<https://www.wikidata.org/wiki/Q2894685> a skos:Concept .
+
+<https://www.wikidata.org/wiki/Q459290> a skos:Concept .
+
+<https://www.wikidata.org/wiki/Q53094> a skos:Concept .
+
+<https://www.wikidata.org/wiki/Q7234396> a skos:Concept .
+
+<https://www.wikidata.org/wiki/Q865585> a skos:Concept .
+
+<https://www.wikidata.org/wiki/Q8740> a schema:Event ;
+    dcterms:references <https://viaf.org/viaf/85362156> .
+
+<https://www.wikidata.org/wiki/Q961852> a schema:Event ;
+    schema:contentLocation <https://www.wikidata.org/wiki/Q39984> .
+
+<https://viaf.org/viaf/117713609> a schema:Person .
+
+<https://viaf.org/viaf/131570070> a schema:Organization ;
+    schema:location <https://www.wikidata.org/wiki/Q65> .
+
+<https://viaf.org/viaf/14970417> a schema:Person .
+
+<https://viaf.org/viaf/84357496> a schema:Person .
+
+<https://viaf.org/viaf/85099020> a schema:Person .
+
+<https://viaf.org/viaf/85362156> a schema:Person .
+
+<https://www.wikidata.org/wiki/Q300323> a schema:Organization .
+
+<https://www.wikidata.org/wiki/Q39984> a schema:Place .
+
+<https://www.wikidata.org/wiki/Q65> a schema:Place .
+
